@@ -13,8 +13,4 @@ public class MazeController {
 
     }
 
-    @FXML
-    protected void mapSwap() {
-
-    }
 }
