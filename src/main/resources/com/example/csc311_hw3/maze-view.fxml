@@ -39,7 +39,7 @@
                               <Image url="@maze2.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="560.0" layoutY="63.0" mnemonicParsing="false" text="Start" />
+                        <Button layoutX="560.0" layoutY="63.0" mnemonicParsing="false" onAction="#carRunMaze" text="Start" />
                         <ImageView fitHeight="45.0" fitWidth="50.0" layoutX="25.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@robot.png" />
