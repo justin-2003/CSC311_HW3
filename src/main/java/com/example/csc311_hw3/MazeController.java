@@ -1,17 +1,22 @@
 package com.example.csc311_hw3;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Polyline;
+import javafx.util.Duration;
 
 import java.net.URL;
 
@@ -33,8 +38,41 @@ public class MazeController implements Initializable {
     private ImageView robot_id;
     @FXML
     private AnchorPane aPaneScene;
+    @FXML
+    private Button startBtn;
 
     AnimationTimer timer;
+
+    //Method for robot to run through the maze
+    @FXML
+    public void runMaze(ActionEvent actionEvent) {
+        //PathTransition
+        Polyline polyline  = new Polyline();
+        //Sets the coordinates
+        polyline.getPoints().addAll(new Double[]{
+                11.0,12.0,
+                50.0, 12.0,
+                50.0,-85.0,
+                249.0,-85.0,
+                249.0, -135.0,
+                295.0, -135.0,
+                295.0, 65.0,
+                347.0, 65.0,
+                347.0, -33.0,
+                450.0,-33.0,
+                450.0, -130.0,
+                500.0, -130.0,
+                500.0, 00.0,
+                530.0, 00.0
+        });
+        PathTransition transition = new PathTransition();
+        //Sets the node
+        transition.setNode(robot_id);
+        transition.setPath(polyline);
+        //Sets the duration of the robot to make to the end.
+        transition.setDuration(Duration.seconds(8));
+        transition.play();
+    }
 
     {
         timer = new AnimationTimer() {
@@ -58,7 +96,7 @@ public class MazeController implements Initializable {
             }
 
 
-            /*public void initialize(URL url, ResourceBundle resourceBundle) {
+            public void initialize(URL url, ResourceBundle resourceBundle) {
                 robotSetup();
 
                 keyPressed.addListener(((observableValue, aBoolean, t1) -> {
@@ -107,22 +145,8 @@ public class MazeController implements Initializable {
 
             }
 
-             */
-
-
             @FXML
-            protected void runMaze() {
-                //PathTransition
-                TranslateTransition translate = new TranslateTransition();
-                translate.setNode(robot_id);
-                translate.setByX(250);
-                translate.play();
-
-            }
-
-            @FXML
-            protected void carRunMaze() {
-
+            private void carRunMaze(){
             }
 
 
@@ -177,11 +201,5 @@ public class MazeController implements Initializable {
                 dPress.set(false);
             }
         });
-
     }
 }
-
-
-
-
-
